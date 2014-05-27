@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pt.ua.querodoar"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/querodoar_medium_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light" >
+        <activity
+            android:name="pt.ua.querodoar.Login"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <data
+                    android:host="login"
+                    android:scheme="login-activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="pt.ua.querodoar" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.ForgetParsePassword"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.ExActivity"
+            android:label="@string/title_activity_ex" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.FeedActivity"
+            android:label="@string/title_activity_feed" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.SignUp"
+            android:label="@string/title_activity_sign_up" >
+        </activity>
+
+        <!-- TODO <activity android:name=".ForgetParsePassword" android:screenOrientation="portrait" android:noHistory="true"></activity> -->
+        <activity
+            android:name="pt.ua.querodoar.WelcomeActivity"
+            android:label="@string/title_activity_welcome" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.DonationList"
+            android:label="@string/title_activity_donation_list" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/item_margin" >
+
+    <ImageView
+        android:id="@+id/viewExpCityInstImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/item_view_icon"
+        android:maxWidth="@dimen/item_view_icon"
+        android:minHeight="@dimen/item_view_icon"
+        android:minWidth="@dimen/item_view_icon"
+        android:paddingLeft="20dp"
+        android:src="@drawable/hd" />
+
+    <TextView
+        android:id="@+id/viewExpCityInstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/viewExpCityInstImage"
+        android:text="Nome Inst"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewExpCityInstDescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewExpCityInstName"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/viewExpCityInstName"
+        android:text="Descrição da instituição..."
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    <TextView
+        android:id="@+id/viewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewExpCityInstName"
+        android:layout_alignParentRight="true"
+        android:text="Ano"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

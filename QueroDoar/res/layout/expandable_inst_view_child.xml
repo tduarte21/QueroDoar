@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/item_margin" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/item_view_icon"
+        android:maxWidth="@dimen/item_view_icon"
+        android:minHeight="@dimen/item_view_icon"
+        android:minWidth="@dimen/item_view_icon"
+        android:src="@drawable/hd" />
+
+    <TextView
+        android:id="@+id/viewInstitution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewProduct"
+        android:layout_below="@+id/viewProduct"
+        android:text="Cidade"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/viewProdDescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewInstitution"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/viewInstitution"
+        android:text="Descrição da instituição..."
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/viewProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="Nome Inst"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewInstitution"
+        android:layout_alignParentRight="true"
+        android:text="Ano"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

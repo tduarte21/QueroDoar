@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/item_margin" >
+
+    <ImageView
+        android:id="@+id/viewExpCityImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/item_view_icon"
+        android:maxWidth="@dimen/item_view_icon"
+        android:minHeight="@dimen/item_view_icon"
+        android:minWidth="@dimen/item_view_icon"
+        android:src="@drawable/hd" />
+    
+    
+    <TextView
+        android:id="@+id/viewExpCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/viewExpCityImage"
+        android:text="Distrito"
+		android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewExpCityDescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewExpCityImage"
+        android:layout_alignLeft="@+id/viewExpCityName"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/viewExpCityName"
+        android:text="Descrição do distrito..."
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
