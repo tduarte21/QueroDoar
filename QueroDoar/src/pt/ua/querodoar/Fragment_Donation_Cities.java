@@ -26,6 +26,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 public class Fragment_Donation_Cities extends Fragment {
 
@@ -56,7 +57,7 @@ public class Fragment_Donation_Cities extends Fragment {
 		// }
 		// }
 
-		loadInstList();
+		//loadInstList();
 
 		// while(inst.isEmpty())
 		// {
@@ -82,7 +83,7 @@ public class Fragment_Donation_Cities extends Fragment {
 
 		ParseQuery<ParseObject> query = ParseQuery.getQuery(CITY_LABEL);
 
-		query.orderByDescending("name");
+		query.orderByAscending("name");
 
 		// cities.add(new ClassCity("Aveiro", 1000));
 		// cities.add(new ClassCity("Porto", 2000));
@@ -113,7 +114,11 @@ public class Fragment_Donation_Cities extends Fragment {
 						// getInstitutions(row.getString("objectId"));
 						// Log.d("post", "retrieved a related post");
 					}
+					
+					loadInstList();
 				}
+				
+				
 
 			}
 		});
@@ -122,38 +127,36 @@ public class Fragment_Donation_Cities extends Fragment {
 
 	private void loadInstList() {
 		// TODO Auto-generated method stub
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("Institution");
+		ParseQuery<ParseUser> query = ParseUser.getQuery();
 		// query.whereEqualTo("city", objectId);
 
-		query.findInBackground(new FindCallback<ParseObject>() {
-			public void done(List<ParseObject> instList, ParseException e) {
+		query.findInBackground(new FindCallback<ParseUser>() {
+			public void done(List<ParseUser> instList, ParseException e) {
 
 				if (instList != null) {
-					for (ParseObject row : instList) {
-						inst.add(new ClassInstitution(row.getString("name"),
-								row.getInt("image"), row.getString("city"),
-								1000, row.getString("description")));
+					for (ParseUser row : instList) {
+						inst.add(new ClassInstitution(row.getString("name"),row.getParseFile("image"), "Aveiro",1000, row.getString("description")));
 						showToast(row.getString("name"));
 					}
+					createCityInstCollection();
 				}
-				createCityInstCollection();
 			}
 
 		});
 	}
 
-	private void createInstGroupList() {
-		inst = new ArrayList<ClassInstitution>();
-		inst.add(new ClassInstitution("Instituição 1", 0, "Aveiro", 1000,
-				"Descrição 1"));
-		inst.add(new ClassInstitution("Instituição 2", 0, "Porto", 1000,
-				"Descrição 2"));
-		inst.add(new ClassInstitution("Instituição 3", 0, "Coimbra", 1000,
-				"Descrição 3"));
-		inst.add(new ClassInstitution("Instituição 4", 0, "Braga", 1000,
-				"Descrição 4"));
-
-	}
+//	private void createInstGroupList() {
+//		inst = new ArrayList<ClassInstitution>();
+//		inst.add(new ClassInstitution("Instituição 1", 0, "Aveiro", 1000,
+//				"Descrição 1"));
+//		inst.add(new ClassInstitution("Instituição 2", 0, "Porto", 1000,
+//				"Descrição 2"));
+//		inst.add(new ClassInstitution("Instituição 3", 0, "Coimbra", 1000,
+//				"Descrição 3"));
+//		inst.add(new ClassInstitution("Instituição 4", 0, "Braga", 1000,
+//				"Descrição 4"));
+//
+//	}
 
 	private void createCityInstCollection() {
 
@@ -181,7 +184,9 @@ public class Fragment_Donation_Cities extends Fragment {
 		showToast("Collection: " + collectionMapCityInst.size());
 		
 		
-		new UpdateUI("result");
+		UpdateUI up = new UpdateUI("result");
+		up.run();
+		
 
 	}
 
@@ -204,7 +209,7 @@ public class Fragment_Donation_Cities extends Fragment {
 				updateList(getView());
 
 			} catch (Exception e) {
-				showToast("JSON Error: " + e);
+				showToast("Error: " + e);
 			}
 
 		}
@@ -291,7 +296,7 @@ public class Fragment_Donation_Cities extends Fragment {
 
 			viewExpCityInstName.setText(topic.getName());
 			viewExpCityInstDescr.setText(topic.getDescription());
-			viewExpCityInstImage.setImageResource(topic.getImage());
+			//viewExpCityInstImage.setImageResource(topic.getImage());
 
 			// delete.setOnClickListener(new OnClickListener() {
 			//

@@ -56,8 +56,8 @@ public class Fragment_Donation_Institutions extends Fragment {
 						// ParseObject image = row.getParseObject("image");
 						// ParseObject description = row.getParseObject("description");
 
-						institutions.add(new ClassInstitution(row.getString("name"), row
-								.getInt("image"), row.getString("city"),row.getInt("year"),row.getString("description")));
+						//institutions.add(new ClassInstitution(row.getString("name"), row
+						//		.getInt("image"), row.getString("city"),row.getInt("year"),row.getString("description")));
 					}
 				}
 

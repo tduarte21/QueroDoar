@@ -26,7 +26,7 @@ public class Fragment_InstList extends Fragment{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
-		loadInstList();
+		//loadInstList();
 	}
 	
 	
@@ -55,16 +55,16 @@ public class Fragment_InstList extends Fragment{
 
 
 	
-	private void loadInstList(){
-		institutions.add(new ClassInstitution("Centro Social",R.drawable.hd,"Aveiro",1996,"Descrição Máquina Café"));
-		institutions.add(new ClassInstitution("Associação",R.drawable.hd,"Aveiro",2000,"Descrição Lata de Atum"));
-		institutions.add(new ClassInstitution("Instituição",R.drawable.hd,"Aveiro",1960,"Descrição Água 0.5L"));
-		institutions.add(new ClassInstitution("Santa Casa",R.drawable.hd,"Aveiro",2010,"Descrição Água 5L"));
-		institutions.add(new ClassInstitution("APPACDM",R.drawable.hd,"Aveiro",2002,"Descrição Hamburguer"));
-		institutions.add(new ClassInstitution("Centro Cultural",R.drawable.hd,"Aveiro",1963,"Descrição Chá"));
-		institutions.add(new ClassInstitution("Liga dos Amigos",R.drawable.hd,"Aveiro",2001,"Descrição Pizza"));
-		institutions.add(new ClassInstitution("C.S.S.C.M.",R.drawable.hd,"Aveiro",2005,"Descrição Cenoura"));
-	}
+//	private void loadInstList(){
+//		institutions.add(new ClassInstitution("Centro Social",R.drawable.hd,"Aveiro",1996,"Descrição Máquina Café"));
+//		institutions.add(new ClassInstitution("Associação",R.drawable.hd,"Aveiro",2000,"Descrição Lata de Atum"));
+//		institutions.add(new ClassInstitution("Instituição",R.drawable.hd,"Aveiro",1960,"Descrição Água 0.5L"));
+//		institutions.add(new ClassInstitution("Santa Casa",R.drawable.hd,"Aveiro",2010,"Descrição Água 5L"));
+//		institutions.add(new ClassInstitution("APPACDM",R.drawable.hd,"Aveiro",2002,"Descrição Hamburguer"));
+//		institutions.add(new ClassInstitution("Centro Cultural",R.drawable.hd,"Aveiro",1963,"Descrição Chá"));
+//		institutions.add(new ClassInstitution("Liga dos Amigos",R.drawable.hd,"Aveiro",2001,"Descrição Pizza"));
+//		institutions.add(new ClassInstitution("C.S.S.C.M.",R.drawable.hd,"Aveiro",2005,"Descrição Cenoura"));
+//	}
 	
 	private class MyListAdapter extends ArrayAdapter<ClassInstitution>{
 
@@ -88,7 +88,7 @@ public class Fragment_InstList extends Fragment{
 			
 			
 			ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView1);
-			imageView.setImageResource(currentInst.getImage());
+			//imageView.setImageResource(currentInst.getImage());
 			
 			
 			TextView txtYear = (TextView) itemView.findViewById(R.id.viewPrice);
