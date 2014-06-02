@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -38,29 +40,41 @@ public class Fragment_Donation_Cities extends Fragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		Parse.initialize(getActivity(), "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+		Parse.initialize(getActivity(),
+				"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
 				"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
-		
-		createCityGroupList();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//createInstGroupList();
-		getInstitutions();
-		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		loadCityList();
+
+		// while(cities.isEmpty())
+		// {
+		// try {
+		// Thread.sleep(2000);
+		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
+
+		loadInstList();
+
+		// while(inst.isEmpty())
+		// {
+		// try {
+		// Thread.sleep(2000);
+		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
+
+		//createCityInstCollection();
+
+		// createInstGroupList();
 
 	}
 
-	private void createCityGroupList() {
+	private void loadCityList() {
 		cities = new ArrayList<ClassCity>();
 
 		inst = new ArrayList<ClassInstitution>();
@@ -84,6 +98,7 @@ public class Fragment_Donation_Cities extends Fragment {
 					for (ParseObject row : cityList) {
 						// This does not require a network access.
 
+						// Debug.waitForDebugger();
 						// ParseObject title = row.getParseObject("title");
 						// ParseObject image = row.getParseObject("image");
 						// ParseObject description =
@@ -91,9 +106,11 @@ public class Fragment_Donation_Cities extends Fragment {
 
 						cities.add(new ClassCity(row.getString("objectId"), row
 								.getString("name"), 1));
+
 						
+
 						// title.delete();
-						//getInstitutions(row.getString("objectId"));
+						// getInstitutions(row.getString("objectId"));
 						// Log.d("post", "retrieved a related post");
 					}
 				}
@@ -103,19 +120,19 @@ public class Fragment_Donation_Cities extends Fragment {
 
 	}
 
-	private void getInstitutions() {
+	private void loadInstList() {
 		// TODO Auto-generated method stub
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Institution");
-		//query.whereEqualTo("city", objectId);
+		// query.whereEqualTo("city", objectId);
 
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> instList, ParseException e) {
-				
 
 				if (instList != null) {
 					for (ParseObject row : instList) {
-						inst.add(new ClassInstitution(row.getString("name"),row.getInt("image"),
-								row.getString("city"), 1000, row.getString("description")));
+						inst.add(new ClassInstitution(row.getString("name"),
+								row.getInt("image"), row.getString("city"),
+								1000, row.getString("description")));
 						showToast(row.getString("name"));
 					}
 				}
@@ -125,29 +142,29 @@ public class Fragment_Donation_Cities extends Fragment {
 		});
 	}
 
-//	private void createInstGroupList() {
-//		inst = new ArrayList<ClassInstitution>();
-//		inst.add(new ClassInstitution("Instituição 1", 0, "Aveiro", 1000,
-//				"Descrição 1"));
-//		inst.add(new ClassInstitution("Instituição 2", 0, "Porto", 1000,
-//				"Descrição 2"));
-//		inst.add(new ClassInstitution("Instituição 3", 0, "Coimbra", 1000,
-//				"Descrição 3"));
-//		inst.add(new ClassInstitution("Instituição 4", 0, "Braga", 1000,
-//				"Descrição 4"));
-//
-//	}
+	private void createInstGroupList() {
+		inst = new ArrayList<ClassInstitution>();
+		inst.add(new ClassInstitution("Instituição 1", 0, "Aveiro", 1000,
+				"Descrição 1"));
+		inst.add(new ClassInstitution("Instituição 2", 0, "Porto", 1000,
+				"Descrição 2"));
+		inst.add(new ClassInstitution("Instituição 3", 0, "Coimbra", 1000,
+				"Descrição 3"));
+		inst.add(new ClassInstitution("Instituição 4", 0, "Braga", 1000,
+				"Descrição 4"));
+
+	}
 
 	private void createCityInstCollection() {
 
 		collectionMapCityInst = new LinkedHashMap<ClassCity, List<ClassInstitution>>();
 
+		// android.os.Debug.waitForDebugger();
 		for (ClassCity city : cities) {
 			List<ClassInstitution> childList = new ArrayList<ClassInstitution>();
 
 			for (ClassInstitution in : inst) {
 
-				android.os.Debug.waitForDebugger();
 				if (city.getObjectID().equals(in.getLocation())) {
 
 					childList.add(in);
@@ -156,6 +173,40 @@ public class Fragment_Donation_Cities extends Fragment {
 
 			}
 			collectionMapCityInst.put(city, childList);
+		}
+		
+		
+		showToast("Cities: " + cities.size());
+		showToast("Institutions: " + inst.size());
+		showToast("Collection: " + collectionMapCityInst.size());
+		
+		
+		new UpdateUI("result");
+
+	}
+
+	public class UpdateUI implements Runnable {
+
+		private String result;
+
+		public UpdateUI(String result) {
+			this.result = result;
+		}
+
+		@Override
+		public void run() {
+
+			try {
+
+				while (getView() == null) {
+					Thread.sleep(500);
+				}
+				updateList(getView());
+
+			} catch (Exception e) {
+				showToast("JSON Error: " + e);
+			}
+
 		}
 	}
 
@@ -174,13 +225,26 @@ public class Fragment_Donation_Cities extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_donation_cities, container,
 				false);
 
-		ExpandableListView expListView = (ExpandableListView) v
-				.findViewById(R.id.elvInstitutionList);
-		final ExpandableCitiesListAdapter expListAdapter = new ExpandableCitiesListAdapter(
-				getActivity(), cities, collectionMapCityInst);
-		expListView.setAdapter(expListAdapter);
+		// while (collectionMapCityInst.isEmpty())
+		//
+		// {
+		// try {
+		// Thread.sleep(1000);
+		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
 
 		return v;
+	}
+
+	private void updateList(View v) {
+		ExpandableListView expListView = (ExpandableListView) v
+				.findViewById(R.id.elvInstitutionList);
+		ExpandableCitiesListAdapter expListAdapter = new ExpandableCitiesListAdapter(
+				getActivity(), cities, collectionMapCityInst);
+		expListView.setAdapter(expListAdapter);
 	}
 
 	public class ExpandableCitiesListAdapter extends BaseExpandableListAdapter {
@@ -309,18 +373,15 @@ public class Fragment_Donation_Cities extends Fragment {
 		public boolean isChildSelectable(int groupPosition, int childPosition) {
 			return true;
 		}
-		
-		
+
 	}
-	
+
 	public void showToast(final String toast) {
 		getActivity().runOnUiThread(new Runnable() {
 			public void run() {
-				Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
-	
 
 }

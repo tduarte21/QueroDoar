@@ -33,7 +33,6 @@ public class WelcomeActivity extends ActionBarActivity {
 		actionBar.hide();
 		
 		
-		
 	}
 
 	@Override

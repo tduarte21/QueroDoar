@@ -76,6 +76,26 @@
             android:name="pt.ua.querodoar.DonationList"
             android:label="@string/title_activity_donation_list" >
         </activity>
+        <activity
+            android:name="pt.ua.querodoar.InstitutionActivity"
+            android:label="@string/title_activity_institution" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.InstitutionRequestsActivity"
+            android:label="@string/title_activity_institution_requests" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.RequestActivity"
+            android:label="@string/title_activity_request" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.RequestProgressActivity"
+            android:label="@string/title_activity_request_progress" >
+        </activity>
+        <activity
+            android:name="pt.ua.querodoar.ThanksActivity"
+            android:label="@string/title_activity_thanks" >
+        </activity>
     </application>
 
 </manifest>

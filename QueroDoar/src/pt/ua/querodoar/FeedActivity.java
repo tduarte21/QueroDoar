@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -18,8 +19,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,9 +30,11 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseRole;
 
 public class FeedActivity extends ActionBarActivity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -74,6 +77,28 @@ public class FeedActivity extends ActionBarActivity implements
 
 		Parse.initialize(this, "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
 				"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+		
+		
+		// By specifying no write privileges for the ACL, we can ensure the role cannot be altered.
+//		ParseACL adminRoleACL = new ParseACL();
+//		adminRoleACL.setPublicReadAccess(true);
+//		ParseRole role = new ParseRole("Admin", adminRoleACL);
+		
+		
+		
+//		ParseACL userRoleACL = new ParseACL();
+//		userRoleACL.setPublicReadAccess(true);
+//		ParseRole userRole = new ParseRole("User", userRoleACL);
+		
+//		ParseACL instRoleACL = new ParseACL();
+//		instRoleACL.setPublicReadAccess(true);
+//		ParseRole role = new ParseRole("Institution", instRoleACL);
+		
+		
+		
+		
+//		userRole.saveInBackground();
+		
 
 		news.clear();
 
@@ -83,6 +108,11 @@ public class FeedActivity extends ActionBarActivity implements
 		loadNewsList();
 		
 		
+		// Font path
+        String fontPath = "fonts/RobotoCondensed-Regular.ttf";
+
+        // Loading Font Face
+        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
 
 		Button btnDonate = (Button) findViewById(R.id.btnDonate);
 
@@ -96,6 +126,8 @@ public class FeedActivity extends ActionBarActivity implements
 			}
 		});
 
+		// Applying font
+        btnDonate.setTypeface(tf);
 
 		// ParseObject testObject = new ParseObject("TestObject");
 		// testObject.put("foo", "bar");
@@ -315,6 +347,7 @@ public class FeedActivity extends ActionBarActivity implements
 			//ArrayAdapter<ClassNews> adapter = new MyListAdapter();
 			ListView listView = (ListView) findViewById(R.id.lstViewNews);
 			listView.setAdapter(adapter);
+			showToast(adapter.getCount()+"");
 			
 		}
 	}

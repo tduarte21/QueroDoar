@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pt.ua.querodoar.InstitutionActivity$PlaceholderFragment" >
+
+    <LinearLayout
+        android:id="@+id/llMain_RefBox"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="Nome Instituição"
+            android:textColor="@color/appthemecolor_color"
+            android:textSize="@dimen/titles" />
+
+        <TextView
+            android:id="@+id/txtInstInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:textSize="@dimen/text"
+            android:textColor="@color/apptheme_color"
+            android:padding="15dp"
+            android:text="Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... " />
+
+        <Button
+            android:id="@+id/btnDonate"
+            style="@style/ButtonAppThemeColor"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_weight="4"
+            android:text="@string/btn_requests"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

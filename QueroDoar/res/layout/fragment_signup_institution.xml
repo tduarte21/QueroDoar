@@ -5,67 +5,38 @@
     android:orientation="vertical"
     android:padding="20dp" >
 
-    <EditText
-        android:id="@+id/txtSignUpInstName"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="Nome da Instituição" />
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:text="@string/institutionRegister"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/apptheme_color"
+        android:textSize="@dimen/titles" />
 
-    <EditText
-        android:id="@+id/txtSignUpInstAcronym"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="Sigla" />
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:text="@string/institutionRegisterWebsite"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/apptheme_color"
+        android:textSize="@dimen/titles" />
 
-    <EditText
-        android:id="@+id/txtSignUpSinglePassword"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/signup_single_password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/txtSignUpSingleEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/signup_single_email"
-        android:inputType="textEmailAddress" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible" >
-
-        <TextView
-            android:id="@+id/lblSignUpSingleAnon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/signup_single_anon"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ToggleButton
-            android:id="@+id/txtSignUpSingleAnon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Anonimato" />
-    </LinearLayout>
-
-<!--     <Spinner -->
-<!--         android:id="@+id/txtSignUpSingleCity" -->
-<!--         android:layout_width="match_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:enabled="false" -->
-<!--         android:entries="@array/cities" /> -->
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:autoLink="web"
+        android:text="@string/institutionRegisterWebsiteLink"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/apptheme_color"
+        android:textSize="@dimen/titles" />
 
 </LinearLayout>

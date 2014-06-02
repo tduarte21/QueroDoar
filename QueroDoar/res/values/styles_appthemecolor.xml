@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="ButtonAppThemeColor" parent="android:Widget.Button">
+	  <item name="android:background">@drawable/appthemecolor_btn_default_holo_light</item>
+	  <item name="android:minHeight">48dip</item>
+	  <item name="android:minWidth">64dip</item>
+	  <item name="android:textColor">@color/white</item>
+	  <item name="android:textSize">27sp</item>
+  </style>
+
+  <style name="ImageButtonAppThemeColor" parent="android:Widget.ImageButton">
+	  <item name="android:background">@drawable/appthemecolor_btn_default_holo_light</item>
+  </style>
+
+  <style name="ProgressBarAppThemeColor" parent="android:Widget.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/appthemecolor_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/appthemecolor_progress_indeterminate_horizontal_holo_light</item>
+      <item name="android:minHeight">16dip</item>
+      <item name="android:maxHeight">16dip</item>
+  </style>
+
+</resources>

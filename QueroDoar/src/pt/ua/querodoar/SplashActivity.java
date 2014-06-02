@@ -1,6 +1,9 @@
 package pt.ua.querodoar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -11,8 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.VideoView;
-import pt.ua.querodoar.R;
+import android.widget.Toast;
+
+import com.parse.Parse;
+import com.parse.ParseUser;
 
 public class SplashActivity extends ActionBarActivity {
 
@@ -23,13 +28,13 @@ public class SplashActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//this.getWindow().setFlags(
-		//		WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		//		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// this.getWindow().setFlags(
+		// WindowManager.LayoutParams.FLAG_FULLSCREEN,
+		// WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.activity_splash);
-		
+
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.hide();
 
@@ -38,20 +43,61 @@ public class SplashActivity extends ActionBarActivity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 
-		new Handler().postDelayed(new Runnable() {
+		if (isNetworkAvailable()) {
+			
+			Parse.initialize(this, "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+					"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
 
-			@Override
-			public void run() {
-				// This method will be executed once the timer is over
-				// Start your app main activity
-				Intent i = new Intent(SplashActivity.this, FeedActivity.class); // WelcomeActivity.class);
-				startActivity(i);
+			new Handler().postDelayed(new Runnable() {
 
-				// close this activity
-				finish();
-			}
-		}, SPLASH_TIME_OUT);
+				@Override
+				public void run() {
 
+					Intent intent;
+
+					if (ParseUser.getCurrentUser() == null) {
+
+						// This method will be executed once the timer is over
+						// Start your app main activity
+						intent = new Intent(SplashActivity.this, WelcomeActivity.class); // WelcomeActivity.class);
+						startActivity(intent);
+
+						// close this activity
+						finish();
+
+					} else {
+						intent = new Intent(SplashActivity.this, FeedActivity.class);
+						startActivity(intent);
+
+						// close this activity
+						finish();
+						
+					}
+				}
+			}, SPLASH_TIME_OUT);
+
+		} else {
+
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() {
+
+					showToast("Network not available! Please connect to the Internet");
+					finish();
+
+				}
+			}, SPLASH_TIME_OUT);
+
+		}
+
+	}
+
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
 	@Override
@@ -61,7 +107,6 @@ public class SplashActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.splash, menu);
 		return true;
 	}
-	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -74,7 +119,6 @@ public class SplashActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
 
 	/**
 	 * A placeholder fragment containing a simple view.
@@ -89,11 +133,18 @@ public class SplashActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_splash,
 					container, false);
-			
-			
-			
+
 			return rootView;
 		}
+	}
+
+	public void showToast(final String toast) {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(SplashActivity.this, toast, Toast.LENGTH_SHORT)
+						.show();
+			}
+		});
 	}
 
 }

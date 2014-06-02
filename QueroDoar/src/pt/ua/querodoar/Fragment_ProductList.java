@@ -25,7 +25,7 @@ public class Fragment_ProductList extends Fragment {
 		super.onCreate(savedInstanceState);
 		
 		loadListView();
-		loadProductList();
+		//loadProductList();
 		
 	}
 	
@@ -61,16 +61,16 @@ public class Fragment_ProductList extends Fragment {
 		new MyListAdapter();
 	}
 
-	private void loadProductList(){
-		products.add(new ClassProduct("Máquina Café",R.drawable.coffee_machine,1,10.2f,"Descrição Máquina Café"));
-		products.add(new ClassProduct("Lata de Atum",R.drawable.veinctor_001,1,10.2f,"Descrição Lata de Atum"));
-		products.add(new ClassProduct("Água 0.5L",R.drawable.veinctor_002,1,10.2f,"Descrição Água 0.5L"));
-		products.add(new ClassProduct("Água 5L",R.drawable.veinctor_003,1,10.2f,"Descrição Água 5L"));
-		products.add(new ClassProduct("Hamburguer",R.drawable.hamburger,1,10.2f,"Descrição Hamburguer"));
-		products.add(new ClassProduct("Chá",R.drawable.veinctor_005,1,10.2f,"Descrição Chá"));
-		products.add(new ClassProduct("Pizza",R.drawable.pizza_slice,1,10.2f,"Descrição Pizza"));
-		products.add(new ClassProduct("Cenoura",R.drawable.carrot,1,.5f,"Descrição Cenoura"));
-	}
+//	private void loadProductList(){
+//		products.add(new ClassProduct("Máquina Café",R.drawable.coffee_machine,1,10.2f,"Descrição Máquina Café"));
+//		products.add(new ClassProduct("Lata de Atum",R.drawable.veinctor_001,1,10.2f,"Descrição Lata de Atum"));
+//		products.add(new ClassProduct("Água 0.5L",R.drawable.veinctor_002,1,10.2f,"Descrição Água 0.5L"));
+//		products.add(new ClassProduct("Água 5L",R.drawable.veinctor_003,1,10.2f,"Descrição Água 5L"));
+//		products.add(new ClassProduct("Hamburguer",R.drawable.hamburger,1,10.2f,"Descrição Hamburguer"));
+//		products.add(new ClassProduct("Chá",R.drawable.veinctor_005,1,10.2f,"Descrição Chá"));
+//		products.add(new ClassProduct("Pizza",R.drawable.pizza_slice,1,10.2f,"Descrição Pizza"));
+//		products.add(new ClassProduct("Cenoura",R.drawable.carrot,1,.5f,"Descrição Cenoura"));
+//	}
 	
 	private class MyListAdapter extends ArrayAdapter<ClassProduct>{
 

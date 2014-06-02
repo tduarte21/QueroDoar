@@ -12,11 +12,10 @@
     <string name="title_activity_ex">ExActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
+    <string name="action_example">Ex act</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_feed">FeedActivity</string>
-    <string name="btn_donate">Quero Doar!</string>
     <string name="news_feed">Feed de Notícias</string>
 
     <!-- Navigation Drawer -->
@@ -35,16 +34,20 @@
     <string name="signup_single_password">Palavra-passe</string>
     <string name="signup_single_confirm_password">Confirmar palavra-passe</string>
     <string name="signup_single_anon">Anonimato</string>
-    <string name="signup_single_createaccount">Criar conta...</string>
+    <string name="signup_single_createaccount">SUBMETER</string>
 
     <!-- Login -->
-    <string name="welcome_login">Já tem conta? Faça <a href="pt.ua.doarmais">login!</a></string>
+    <string name="welcome_login">Já tem conta? Faça <a href="pt.ua.querodoar">login!</a></string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Palavra-passe</string>
     <string name="action_sign_in_short">Login</string>
     <string name="orText">Ou</string>
     <string name="action_register">Registe-se</string>
     <string name="forget_password">Recuperar palavra-passe</string>
+    <string name="institutionRegister">Quer fazer parte do Quero Doar?</string>
+    <string name="institutionRegisterWebsite">Visite o nosso site em</string>
+    <string name="institutionRegisterWebsiteLink"><a href="http://querodoar.parseapp.com/">http://querodoar.parseapp.com/</a></string>
+    
     <!-- Strings related to login -->
     <!-- TODO -->
     <string name="prompt_email">Email</string>
@@ -60,11 +63,16 @@
     <string name="error_invalid_password">Esta palavra-passe é demasiado curta</string>
     <string name="error_invalid_confirm_password">As palavras-passe não são iguais</string>
     <string name="error_field_required">Este campo é necessário</string>
-    
+
     <!-- Strings related to DonationList -->
     <string name="donationlist_1">Produtos</string>
     <string name="donationlist_2">Instituições</string>
     <string name="donationlist_3">Distritos</string>
+
+    <!-- Buttons -->
+    <string name="btn_donate">QUERO DOAR!</string>
+    <string name="btn_requests">VER PEDIDOS</string>
+    <string name="donate">DOAR</string>
 
     <string-array name="cities">
         <item>Angra do Heroísmo</item>
@@ -87,8 +95,15 @@
         <item>Santarém</item>
         <item>Setúbal</item>
     </string-array>
+    
+    <string name="thankyou">OBRIGADO PELO SEU DONATIVO!</string>
 
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_donation_list">DonationList</string>
+    <string name="title_activity_institution">InstitutionActivity</string>
+    <string name="title_activity_institution_requests">InstitutionRequestsActivity</string>
+    <string name="title_activity_request">RequestActivity</string>
+    <string name="title_activity_request_progress">RequestProgressActivity</string>
+    <string name="title_activity_thanks">ThanksActivity</string>
 
 </resources>

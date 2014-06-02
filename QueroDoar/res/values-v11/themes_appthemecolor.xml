@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="AppThemeColor" parent="@style/_AppThemeColor"/>
+
+  <style name="_AppThemeColor" parent="android:Theme.Holo.Light.DarkActionBar">
+
+    <item name="android:buttonStyle">@style/ButtonAppThemeColor</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonAppThemeColor</item>
+
+    <item name="android:progressBarStyleHorizontal">@style/ProgressBarAppThemeColor</item>
+
+  </style>
+
+</resources>

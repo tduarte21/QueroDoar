@@ -2,13 +2,13 @@ package pt.ua.querodoar;
 
 import java.util.Locale;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.FeatureInfo;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +24,7 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class Login extends Activity {
+public class Login extends ActionBarActivity{
 
 	Button btn_LoginIn = null;
 	//Button btn_SignUp = null;
@@ -47,7 +47,7 @@ public class Login extends Activity {
 		onCreateParse();
 		// Calling ParseAnalytics to see Analytics of our app
 		ParseAnalytics.trackAppOpened(getIntent());
-
+		
 		// creating connection detector class instance
 		cd = new ConnectionDetector(getApplicationContext());
 
@@ -56,6 +56,9 @@ public class Login extends Activity {
 		btn_ForgetPass = (Button) findViewById(R.id.btn_ForgetPass);
 		mUserNameEditText = (EditText) findViewById(R.id.txtLoginEmail);
 		mPasswordEditText = (EditText) findViewById(R.id.txtLoginPassword);
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.hide();
 
 		btn_LoginIn.setOnClickListener(new OnClickListener() {
 

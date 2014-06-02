@@ -20,7 +20,7 @@ android:orientation="horizontal">
     android:id="@+id/icon"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
-    android:src="@drawable/logo"
+    android:src="@drawable/querodoar"
     android:layout_gravity="center"/>
 
 <TextView

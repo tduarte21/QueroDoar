@@ -227,7 +227,7 @@ public class Fragment_SignUp_Single extends Fragment {
 			public void done(ParseException e) {
 				if (e == null) {
 					signUpMsg("Account Created Successfully");
-					Intent in = new Intent(getActivity(), MainActivity.class);
+					Intent in = new Intent(getActivity(), FeedActivity.class);
 					startActivity(in);
 				} else {
 					// Sign up didn't succeed. Look at the ParseException
@@ -285,9 +285,7 @@ public class Fragment_SignUp_Single extends Fragment {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		Parse.initialize(getActivity(),
-				"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
-				"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+		//Parse.initialize(getActivity(),"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo","iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
 	}
 
 }
