@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -108,12 +109,15 @@ public class Login extends ActionBarActivity{
 	public void onCreateParse() {
 		
 		try {
-			//TODO
-		} catch (Exception e) {
-			// TODO: handle exception
+			Parse.initialize(this,
+					"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+					"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+		} catch (NetworkOnMainThreadException e) {
+			// upon resume or recent Parse.initialize exceptions this
+			// exception is thrown
+			// Temporarily supressing it right now
+			//e.printStackTrace();
 		}
-		Parse.initialize(this, "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
-				"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
 	}
 
 	@Override
@@ -188,7 +192,7 @@ public class Login extends ActionBarActivity{
 	private void login(String lowerCase, String password) {
 		// TODO Auto-generated method stub
 		
-		showToast(lowerCase + " " + password);
+		//showToast(lowerCase + " " + password);
 		
 		ParseUser.logInInBackground(lowerCase, password, new LogInCallback() {
 			@Override
@@ -207,6 +211,7 @@ public class Login extends ActionBarActivity{
 		// TODO Auto-generated method stub
 		Intent in = new Intent(Login.this, FeedActivity.class);
 		startActivity(in);
+		finish();
 	}
 
 	protected void loginUnSuccessful() {

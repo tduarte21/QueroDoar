@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.NetworkOnMainThreadException;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -44,9 +45,17 @@ public class SplashActivity extends ActionBarActivity {
 		}
 
 		if (isNetworkAvailable()) {
-			
-			Parse.initialize(this, "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
-					"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+
+			try {
+				Parse.initialize(this,
+						"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+						"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+			} catch (NetworkOnMainThreadException e) {
+				// upon resume or recent Parse.initialize exceptions this
+				// exception is thrown
+				// Temporarily supressing it right now
+				// e.printStackTrace();
+			}
 
 			new Handler().postDelayed(new Runnable() {
 
@@ -59,19 +68,21 @@ public class SplashActivity extends ActionBarActivity {
 
 						// This method will be executed once the timer is over
 						// Start your app main activity
-						intent = new Intent(SplashActivity.this, WelcomeActivity.class); // WelcomeActivity.class);
+						intent = new Intent(SplashActivity.this,
+								WelcomeActivity.class); // WelcomeActivity.class);
 						startActivity(intent);
 
 						// close this activity
 						finish();
 
 					} else {
-						intent = new Intent(SplashActivity.this, FeedActivity.class);
+						intent = new Intent(SplashActivity.this,
+								FeedActivity.class);
 						startActivity(intent);
 
 						// close this activity
 						finish();
-						
+
 					}
 				}
 			}, SPLASH_TIME_OUT);

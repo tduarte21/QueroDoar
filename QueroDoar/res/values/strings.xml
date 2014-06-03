@@ -73,6 +73,19 @@
     <string name="btn_donate">QUERO DOAR!</string>
     <string name="btn_requests">VER PEDIDOS</string>
     <string name="donate">DOAR</string>
+    
+    
+    <!-- Action Menu -->
+    <string name="action_account">A minha conta</string>
+    <string name="action_history">Histórico de doações</string>
+    <string name="action_about">Sobre nós</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_exit">Sair</string>
+    
+    
+    <!-- Messages -->
+    <string name="loading_news">A carregar notícias...</string>
+    <string name="loading">A carregar...</string>
 
     <string-array name="cities">
         <item>Angra do Heroísmo</item>

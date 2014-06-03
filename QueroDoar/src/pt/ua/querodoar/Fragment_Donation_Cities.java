@@ -5,12 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,9 +40,16 @@ public class Fragment_Donation_Cities extends Fragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		Parse.initialize(getActivity(),
-				"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
-				"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+		try {
+			Parse.initialize(getActivity(),
+					"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+					"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+		} catch (NetworkOnMainThreadException e) {
+			// upon resume or recent Parse.initialize exceptions this
+			// exception is thrown
+			// Temporarily supressing it right now
+			// e.printStackTrace();
+		}
 
 		loadCityList();
 
@@ -57,7 +63,7 @@ public class Fragment_Donation_Cities extends Fragment {
 		// }
 		// }
 
-		//loadInstList();
+		// loadInstList();
 
 		// while(inst.isEmpty())
 		// {
@@ -69,7 +75,7 @@ public class Fragment_Donation_Cities extends Fragment {
 		// }
 		// }
 
-		//createCityInstCollection();
+		// createCityInstCollection();
 
 		// createInstGroupList();
 
@@ -108,17 +114,13 @@ public class Fragment_Donation_Cities extends Fragment {
 						cities.add(new ClassCity(row.getString("objectId"), row
 								.getString("name"), 1));
 
-						
-
 						// title.delete();
 						// getInstitutions(row.getString("objectId"));
 						// Log.d("post", "retrieved a related post");
 					}
-					
+
 					loadInstList();
 				}
-				
-				
 
 			}
 		});
@@ -135,7 +137,9 @@ public class Fragment_Donation_Cities extends Fragment {
 
 				if (instList != null) {
 					for (ParseUser row : instList) {
-						inst.add(new ClassInstitution(row.getString("name"),row.getParseFile("image"), "Aveiro",1000, row.getString("description")));
+						inst.add(new ClassInstitution(row.getString("name"),
+								row.getParseFile("image"), "Aveiro", 1000, row
+										.getString("description")));
 						showToast(row.getString("name"));
 					}
 					createCityInstCollection();
@@ -145,18 +149,18 @@ public class Fragment_Donation_Cities extends Fragment {
 		});
 	}
 
-//	private void createInstGroupList() {
-//		inst = new ArrayList<ClassInstitution>();
-//		inst.add(new ClassInstitution("Instituição 1", 0, "Aveiro", 1000,
-//				"Descrição 1"));
-//		inst.add(new ClassInstitution("Instituição 2", 0, "Porto", 1000,
-//				"Descrição 2"));
-//		inst.add(new ClassInstitution("Instituição 3", 0, "Coimbra", 1000,
-//				"Descrição 3"));
-//		inst.add(new ClassInstitution("Instituição 4", 0, "Braga", 1000,
-//				"Descrição 4"));
-//
-//	}
+	// private void createInstGroupList() {
+	// inst = new ArrayList<ClassInstitution>();
+	// inst.add(new ClassInstitution("Instituição 1", 0, "Aveiro", 1000,
+	// "Descrição 1"));
+	// inst.add(new ClassInstitution("Instituição 2", 0, "Porto", 1000,
+	// "Descrição 2"));
+	// inst.add(new ClassInstitution("Instituição 3", 0, "Coimbra", 1000,
+	// "Descrição 3"));
+	// inst.add(new ClassInstitution("Instituição 4", 0, "Braga", 1000,
+	// "Descrição 4"));
+	//
+	// }
 
 	private void createCityInstCollection() {
 
@@ -177,16 +181,13 @@ public class Fragment_Donation_Cities extends Fragment {
 			}
 			collectionMapCityInst.put(city, childList);
 		}
-		
-		
+
 		showToast("Cities: " + cities.size());
 		showToast("Institutions: " + inst.size());
 		showToast("Collection: " + collectionMapCityInst.size());
-		
-		
+
 		UpdateUI up = new UpdateUI("result");
 		up.run();
-		
 
 	}
 
@@ -203,9 +204,6 @@ public class Fragment_Donation_Cities extends Fragment {
 
 			try {
 
-				while (getView() == null) {
-					Thread.sleep(500);
-				}
 				updateList(getView());
 
 			} catch (Exception e) {
@@ -296,7 +294,7 @@ public class Fragment_Donation_Cities extends Fragment {
 
 			viewExpCityInstName.setText(topic.getName());
 			viewExpCityInstDescr.setText(topic.getDescription());
-			//viewExpCityInstImage.setImageResource(topic.getImage());
+			// viewExpCityInstImage.setImageResource(topic.getImage());
 
 			// delete.setOnClickListener(new OnClickListener() {
 			//

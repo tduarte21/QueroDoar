@@ -1,6 +1,5 @@
 package pt.ua.querodoar;
 
-import java.util.List;
 import java.util.Locale;
 
 import android.app.AlertDialog;
@@ -8,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -22,8 +22,6 @@ import android.widget.ToggleButton;
 
 import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -122,7 +120,7 @@ public class Fragment_SignUp_Single extends Fragment {
 		});
 
 		onCreateParse();
-		
+
 		return view;
 
 	}
@@ -185,7 +183,8 @@ public class Fragment_SignUp_Single extends Fragment {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 
-			Toast.makeText(getActivity(), "signUp", Toast.LENGTH_SHORT).show();
+			// Toast.makeText(getActivity(), "signUp",
+			// Toast.LENGTH_SHORT).show();
 
 			signUp(strFirstName, strLastName,
 					strEmail.toLowerCase(Locale.getDefault()), strEmail,
@@ -199,8 +198,6 @@ public class Fragment_SignUp_Single extends Fragment {
 			String mEmail, String mPassword, String city, boolean anon) {
 		// TODO Auto-generated method stub
 
-		
-
 		Toast.makeText(getActivity(), mUsername + " - " + mEmail,
 				Toast.LENGTH_SHORT).show();
 		ParseUser user = new ParseUser();
@@ -211,17 +208,17 @@ public class Fragment_SignUp_Single extends Fragment {
 		user.put("lastname", lastName);
 		user.put("anonymous", anon);
 
-//		try {
-//			ParseObject poCity = new ParseObject("City");
-//			ParseQuery<ParseObject> query = ParseQuery.getQuery("City");
-//			query.whereEqualTo("name", city);
-//			List<ParseObject> result;
-//			result = query.find();
-//			String cityObjectID = result.get(0).getObjectId().toString();
-//			user.put("city", city);
-//		} catch (ParseException e1) {
-//			signUpMsg("Error in City Query");
-//		}
+		// try {
+		// ParseObject poCity = new ParseObject("City");
+		// ParseQuery<ParseObject> query = ParseQuery.getQuery("City");
+		// query.whereEqualTo("name", city);
+		// List<ParseObject> result;
+		// result = query.find();
+		// String cityObjectID = result.get(0).getObjectId().toString();
+		// user.put("city", city);
+		// } catch (ParseException e1) {
+		// signUpMsg("Error in City Query");
+		// }
 
 		user.signUpInBackground(new SignUpCallback() {
 			public void done(ParseException e) {
@@ -229,6 +226,7 @@ public class Fragment_SignUp_Single extends Fragment {
 					signUpMsg("Account Created Successfully");
 					Intent in = new Intent(getActivity(), FeedActivity.class);
 					startActivity(in);
+					getActivity().finish();
 				} else {
 					// Sign up didn't succeed. Look at the ParseException
 					// to figure out what went wrong
@@ -281,11 +279,14 @@ public class Fragment_SignUp_Single extends Fragment {
 	public void onCreateParse() {
 
 		try {
-			// TODO
-		} catch (Exception e) {
-			// TODO: handle exception
+			Parse.initialize(getActivity(), "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+					"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
+		} catch (NetworkOnMainThreadException e) {
+			// upon resume or recent Parse.initialize exceptions this
+			// exception is thrown
+			// Temporarily supressing it right now
+			// e.printStackTrace();
 		}
-		//Parse.initialize(getActivity(),"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo","iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
 	}
 
 }

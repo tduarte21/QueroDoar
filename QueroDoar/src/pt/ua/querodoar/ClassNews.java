@@ -1,14 +1,16 @@
 package pt.ua.querodoar;
 
+import com.parse.ParseFile;
+
 public class ClassNews {
 
 	private String title;
-	private int image;
+	private ParseFile image;
 	private String description;
 	
 	
 
-	public ClassNews(String title, int image, String description) {
+	public ClassNews(String title, ParseFile image, String description) {
 		super();
 		this.title = title;
 		this.image = image;
@@ -23,11 +25,11 @@ public class ClassNews {
 		this.title = title;
 	}
 
-	public int getImage() {
+	public ParseFile getImage() {
 		return image;
 	}
 
-	public void setImage(int image) {
+	public void setImage(ParseFile image) {
 		this.image = image;
 	}
 
