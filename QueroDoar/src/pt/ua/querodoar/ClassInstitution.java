@@ -5,15 +5,17 @@ import com.parse.ParseFile;
 public class ClassInstitution {
 
 	//private int id;
+	private String objectID;
 	private String name;
 	private ParseFile image;
 	private String location;
 	private int year;
 	private String description;
 
-	public ClassInstitution(String name, ParseFile image, String location, int year,String description) {
+	public ClassInstitution(String objectID, String name, ParseFile image, String location, int year,String description) {
 		super();
 		//this.id = id;
+		this.objectID = objectID;
 		this.name = name;
 		this.image = image;
 		this.location = location;
@@ -29,6 +31,10 @@ public class ClassInstitution {
 	
 	public String getName() {
 		return name;
+	}
+
+	public String getObjectID() {
+		return objectID;
 	}
 
 	public void setName(String name) {

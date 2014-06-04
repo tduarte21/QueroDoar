@@ -73,6 +73,7 @@
     <string name="btn_donate">QUERO DOAR!</string>
     <string name="btn_requests">VER PEDIDOS</string>
     <string name="donate">DOAR</string>
+    <string name="submit_edit">SUBMETER</string>
 
     <!-- Action Menu -->
     <string name="action_account">A minha conta</string>

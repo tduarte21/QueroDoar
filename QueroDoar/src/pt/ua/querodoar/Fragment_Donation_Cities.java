@@ -5,8 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.datatype.Duration;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -18,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,8 +58,6 @@ public class Fragment_Donation_Cities extends Fragment {
 			// Temporarily supressing it right now
 			// e.printStackTrace();
 		}
-		
-		
 
 		loadCityList();
 
@@ -118,7 +120,8 @@ public class Fragment_Donation_Cities extends Fragment {
 						// row.getParseObject("description");
 
 						cities.add(new ClassCity(row.getObjectId(), row
-								.getString("name"), 1,row.getParseFile("image")));
+								.getString("name"), 1, row
+								.getParseFile("image")));
 
 						// title.delete();
 						// getInstitutions(row.getString("objectId"));
@@ -173,12 +176,12 @@ public class Fragment_Donation_Cities extends Fragment {
 
 		// showToast("User query to " + city.getName() + ": " + queryCount);
 
-		//android.os.Debug.waitForDebugger();
+		// android.os.Debug.waitForDebugger();
 		query.findInBackground(new FindCallback<ParseUser>() {
 			public void done(List<ParseUser> instList, ParseException e) {
 
 				List<ClassInstitution> institutions = new ArrayList<ClassInstitution>();
-				
+
 				if (instList != null) {
 					for (ParseUser row : instList) {
 
@@ -186,17 +189,17 @@ public class Fragment_Donation_Cities extends Fragment {
 						ParseObject location = new ParseObject("City");
 						ParseObject cityRow = row.getParseObject("city");
 						if (cityRow != null) {
-							
-							//ParseObject cityRowParse = cityRow;
+
+							// ParseObject cityRowParse = cityRow;
 							String locationObjectID = cityRow.getObjectId();
 
-							inst = new ClassInstitution(row.getString("name"),
+							inst = new ClassInstitution(row.getObjectId(),row.getString("name"),
 									row.getParseFile("image"),
 									locationObjectID, 1000, row
 											.getString("description"));
 
 						} else {
-							inst = new ClassInstitution(row.getString("name"),
+							inst = new ClassInstitution(row.getObjectId(),row.getString("name"),
 									row.getParseFile("image"), null, 1000, row
 											.getString("description"));
 						}
@@ -204,23 +207,22 @@ public class Fragment_Donation_Cities extends Fragment {
 						institutions.add(inst);
 
 						for (ClassCity city : cities) {
-							List<ClassInstitution> childList = collectionMapCityInst.get(city);
-							
-							if(collectionMapCityInst.get(city) == null)
-							{
+							List<ClassInstitution> childList = collectionMapCityInst
+									.get(city);
+
+							if (collectionMapCityInst.get(city) == null) {
 								childList = new ArrayList<ClassInstitution>();
 							}
-							
-							
+
 							// if (in.getLocation() != null) {
 
 							// showToast(city.getObjectID() + " = " +
 							// in.getLocation());
 
-
 							if (cityRow != null) {
-								if (city.getObjectID().equals(inst.getLocation())) {
-									//showToast("ADICIONADO!");
+								if (city.getObjectID().equals(
+										inst.getLocation())) {
+									// showToast("ADICIONADO!");
 									childList.add(inst);
 								}
 							}
@@ -231,11 +233,10 @@ public class Fragment_Donation_Cities extends Fragment {
 
 					}
 
-//					showToast("Cities: " + cities.size());
-//					showToast("Institutions: " + institutions.size());
-//					showToast("Collection: " + collectionMapCityInst.size());
+					// showToast("Cities: " + cities.size());
+					// showToast("Institutions: " + institutions.size());
+					// showToast("Collection: " + collectionMapCityInst.size());
 
-					
 					UpdateUI up = new UpdateUI("result");
 					up.run();
 				}
@@ -285,8 +286,9 @@ public class Fragment_Donation_Cities extends Fragment {
 
 		View v = inflater.inflate(R.layout.fragment_donation_cities, container,
 				false);
-		
-		ProgressBar progress = (ProgressBar) v.findViewById(R.id.progressBarCities);
+
+		ProgressBar progress = (ProgressBar) v
+				.findViewById(R.id.progressBarCities);
 		progress.setVisibility(progress.VISIBLE);
 
 		// while (collectionMapCityInst.isEmpty())
@@ -304,18 +306,46 @@ public class Fragment_Donation_Cities extends Fragment {
 	}
 
 	private void updateList(View v) {
-		
-		ProgressBar progress = (ProgressBar) v.findViewById(R.id.progressBarCities);
+
+		ProgressBar progress = (ProgressBar) v
+				.findViewById(R.id.progressBarCities);
 		progress.setVisibility(progress.INVISIBLE);
-		
+
 		ExpandableListView expListView = (ExpandableListView) v
 				.findViewById(R.id.elvInstitutionList);
 		ExpandableCitiesListAdapter expListAdapter = new ExpandableCitiesListAdapter(
 				getActivity(), cities, collectionMapCityInst);
+		
+		final ExpandableCitiesListAdapter lstAdapt = expListAdapter;
+		
+		
+		expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+		    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+		        //Object e = (Object)adapter.getChild(groupPosition, childPosition);
+		        //doing some work for child
+		        
+		    	//ShowItem(.get(childPosition).getId());
+
+                Object obj = lstAdapt.getChild(groupPosition, childPosition);
+                
+                ClassInstitution institution = (ClassInstitution) obj;
+                
+                Intent intent = new Intent(getActivity(), InstitutionActivity.class);
+                
+                intent.putExtra("inst", institution.getObjectID());
+                
+    			startActivity(intent);
+		    	
+		        return true;
+		    }
+		});
+		
 		expListView.setAdapter(expListAdapter);
+		
+		
 	}
 
-	public class ExpandableCitiesListAdapter extends BaseExpandableListAdapter {
+	public class ExpandableCitiesListAdapter extends BaseExpandableListAdapter implements OnChildClickListener  {
 
 		private Activity context;
 		private Map<ClassCity, List<ClassInstitution>> miscCollections;
@@ -327,8 +357,14 @@ public class Fragment_Donation_Cities extends Fragment {
 			this.context = context;
 			this.miscCollections = miscCollections;
 			this.topiclist = topiclist;
+			
 		}
-		
+
+		@Override //ExpandableListView, View, int, int, long
+		public boolean onChildClick(ExpandableListView parent, View v,int groupPosition, int childPosition, long id) {
+			// Create a switch that switches on the specific child position.
+			return true;
+		}
 
 		public Object getChild(int groupPosition, int childPosition) {
 			return miscCollections.get(topiclist.get(groupPosition)).get(
@@ -426,7 +462,7 @@ public class Fragment_Donation_Cities extends Fragment {
 					.findViewById(R.id.viewExpCityDescr);
 			ImageView viewExpCityImage = (ImageView) convertView
 					.findViewById(R.id.viewExpCityImage);
-			
+
 			try {
 				ParseFile imageFile = (ParseFile) city.getImage();
 				if (imageFile != null) {

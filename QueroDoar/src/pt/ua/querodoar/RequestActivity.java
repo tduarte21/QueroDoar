@@ -1,15 +1,14 @@
 package pt.ua.querodoar;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.Toast;
 
 public class RequestActivity extends ActionBarActivity {
 
@@ -22,6 +21,15 @@ public class RequestActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		
+		Bundle extras = getIntent().getExtras();
+		String objectID = extras.getString("inst");
+		
+		showToast(objectID);
+		
+		
+		
 	}
 
 	@Override
@@ -59,6 +67,14 @@ public class RequestActivity extends ActionBarActivity {
 					container, false);
 			return rootView;
 		}
+	}
+	
+	public void showToast(final String toast) {
+		this.runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(RequestActivity.this, toast, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 }

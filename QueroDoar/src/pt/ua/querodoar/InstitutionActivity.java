@@ -1,5 +1,13 @@
 package pt.ua.querodoar;
 
+import java.util.List;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseRole;
+import com.parse.ParseUser;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -9,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.os.Build;
 
 public class InstitutionActivity extends ActionBarActivity {
@@ -22,6 +31,33 @@ public class InstitutionActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		
+		Bundle extras = getIntent().getExtras();
+		String objectID = extras.getString("inst");
+		
+		showToast(objectID);
+		
+		
+		
+		
+		ParseQuery<ParseUser> queryUser = ParseQuery.getQuery(ParseUser.class);
+
+		queryUser.whereMatches("objectID", objectID);
+
+		queryUser.findInBackground(new FindCallback<ParseUser>() {
+			public void done(List<ParseUser> userList, ParseException e) {
+				if (userList != null) {
+					
+					for (ParseUser parseUser : userList) {
+						showToast(parseUser.getUsername());
+					}
+
+
+				}
+			}
+		});
+		
 	}
 
 	@Override
@@ -59,6 +95,14 @@ public class InstitutionActivity extends ActionBarActivity {
 					container, false);
 			return rootView;
 		}
+	}
+	
+	public void showToast(final String toast) {
+		this.runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(InstitutionActivity.this, toast, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 }
