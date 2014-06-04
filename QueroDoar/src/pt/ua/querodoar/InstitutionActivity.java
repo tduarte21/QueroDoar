@@ -39,11 +39,9 @@ public class InstitutionActivity extends ActionBarActivity {
 		showToast(objectID);
 		
 		
-		
-		
 		ParseQuery<ParseUser> queryUser = ParseQuery.getQuery(ParseUser.class);
 
-		queryUser.whereMatches("objectID", objectID);
+		queryUser.whereContains("objectId", objectID);
 
 		queryUser.findInBackground(new FindCallback<ParseUser>() {
 			public void done(List<ParseUser> userList, ParseException e) {
@@ -52,8 +50,6 @@ public class InstitutionActivity extends ActionBarActivity {
 					for (ParseUser parseUser : userList) {
 						showToast(parseUser.getUsername());
 					}
-
-
 				}
 			}
 		});

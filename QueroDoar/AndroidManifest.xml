@@ -100,10 +100,6 @@
             android:name="pt.ua.querodoar.DonationListByCities"
             android:label="@string/title_activity_donation_list_by_cities" >
         </activity>
-        <activity
-            android:name="pt.ua.querodoar.Account"
-            android:label="@string/title_activity_account" >
-        </activity>
     </application>
 
 </manifest>
