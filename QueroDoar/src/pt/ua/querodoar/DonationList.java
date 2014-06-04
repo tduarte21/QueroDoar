@@ -36,13 +36,10 @@ public class DonationList extends ActionBarActivity implements
 	 * current dropdown position.
 	 */
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-	
-	
-	//Lists
-	
+
+	// Lists
+
 	List<ClassProduct> products;
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,41 +52,19 @@ public class DonationList extends ActionBarActivity implements
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
 		// Set up the dropdown list navigation in the action bar.
-		actionBar.setListNavigationCallbacks(
-		// Specify a SpinnerAdapter to populate the dropdown list.
-				new ArrayAdapter<String>(actionBar.getThemedContext(),
+		actionBar.setListNavigationCallbacks(new ArrayAdapter<String>(actionBar.getThemedContext(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
 								getString(R.string.donationlist_1),
 								getString(R.string.donationlist_2),
 								getString(R.string.donationlist_3), }), this);
-		
-		
-		
-		createCityGroupList();
-		createInstGroupList();
-		createProdGroupList();
-		
-		
-		//createInstProdCollection();
+
+
+		// createInstProdCollection();
 
 	}
 
-	private void createInstGroupList() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void createProdGroupList() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void createCityGroupList() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		// Restore the previously serialized current dropdown position.
@@ -110,15 +85,13 @@ public class DonationList extends ActionBarActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.donation_list, menu);
+		getMenuInflater().inflate(R.menu.menu, menu);
 
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
-		SupportMenuItem searchMenuItem = ((SupportMenuItem) menu
-				.findItem(R.id.action_search));
+		SupportMenuItem searchMenuItem = ((SupportMenuItem) menu.findItem(R.id.action_search));
 		SearchView searchView = (SearchView) searchMenuItem.getActionView();
-		searchView.setSearchableInfo(searchManager
-				.getSearchableInfo(getComponentName()));
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
 		searchMenuItem
 				.setSupportOnActionExpandListener(new MenuItemCompat.OnActionExpandListener() {
@@ -159,34 +132,37 @@ public class DonationList extends ActionBarActivity implements
 		// When the given dropdown item is selected, show its contents in the
 		// container view.
 
-		showToast(Integer.toString(position));
-
-		switch (position) {
-		case 0:
-			getSupportFragmentManager()
-					.beginTransaction()
-					.replace(
-							R.id.container,
-							Fragment_Donation_Products
-									.newInstance(position + 1)).commit();
-			break;
-		case 1:
-			getSupportFragmentManager()
-					.beginTransaction()
-					.replace(
-							R.id.container,
-							Fragment_Donation_Institutions
-									.newInstance(position + 1)).commit();
-			break;
-		case 2:
-			getSupportFragmentManager()
-					.beginTransaction()
-					.replace(R.id.container,
-							Fragment_Donation_Cities.newInstance(position + 1))
-					.commit();
-			break;
-		}
-
+		// showToast(Integer.toString(position));
+		
+		getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.container,
+				Fragment_Donation_Cities.newInstance(position + 1))
+		.commit();
+//
+//		switch (position) {
+//		case 0:
+//			
+//			break;
+//		case 1:
+//			getSupportFragmentManager()
+//					.beginTransaction()
+//					.replace(
+//							R.id.container,
+//							Fragment_Donation_Institutions
+//									.newInstance(position + 1)).commit();
+//			break;
+//		case 2:
+//
+//			getSupportFragmentManager()
+//					.beginTransaction()
+//					.replace(
+//							R.id.container,
+//							Fragment_Donation_Products
+//									.newInstance(position + 1)).commit();
+//			break;
+//		}
+//
 		return true;
 	}
 
@@ -236,5 +212,4 @@ public class DonationList extends ActionBarActivity implements
 		});
 	}
 
-	
 }

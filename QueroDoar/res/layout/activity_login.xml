@@ -65,9 +65,9 @@
             android:gravity="center"
             android:text="(Login com facebook brevemente)" />
 
+<!--             style="@style/ButtonAppTheme" -->
         <Button
             android:id="@+id/btn_ForgetPass"
-            style="@style/ButtonAppTheme"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/forget_password"

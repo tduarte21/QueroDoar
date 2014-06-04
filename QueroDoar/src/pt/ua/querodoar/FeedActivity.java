@@ -125,7 +125,7 @@ public class FeedActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent in = new Intent(FeedActivity.this, DonationList.class);
+				Intent in = new Intent(FeedActivity.this, DonationListByCities.class);
 				startActivity(in);
 			}
 		});

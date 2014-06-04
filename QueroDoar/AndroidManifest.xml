@@ -96,6 +96,10 @@
             android:name="pt.ua.querodoar.ThanksActivity"
             android:label="@string/title_activity_thanks" >
         </activity>
+        <activity
+            android:name="pt.ua.querodoar.DonationListByCities"
+            android:label="@string/title_activity_donation_list_by_cities" >
+        </activity>
     </application>
 
 </manifest>

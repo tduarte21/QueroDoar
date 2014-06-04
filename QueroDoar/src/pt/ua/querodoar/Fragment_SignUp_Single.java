@@ -1,5 +1,6 @@
 package pt.ua.querodoar;
 
+import java.util.List;
 import java.util.Locale;
 
 import android.app.AlertDialog;
@@ -20,8 +21,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRole;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -121,8 +126,62 @@ public class Fragment_SignUp_Single extends Fragment {
 
 		onCreateParse();
 
+		roles();
+
 		return view;
 
+	}
+
+	public void users(List<ParseRole> rowsList) {
+
+		ParseQuery<ParseUser> queryUser = ParseQuery.getQuery(ParseUser.class);
+
+		final List<ParseRole> finalRowsList = rowsList;
+
+		queryUser.findInBackground(new FindCallback<ParseUser>() {
+			public void done(List<ParseUser> userList, ParseException e) {
+				if (userList != null) {
+
+					ParseRole role = finalRowsList.get(2);
+					for (ParseUser user : userList) {
+						role.getUsers().add(user);
+						Toast.makeText(getActivity(), role.getString("name") + "add" + user.getString("name"),Toast.LENGTH_SHORT).show();
+						
+					}
+//					for (ParseRole childRole : finalRowsList) {
+//						role.getRoles().add(childRole);
+//						Toast.makeText(getActivity(), role.getString("name") + "add" + user.getString("name"),Toast.LENGTH_SHORT).show();
+//					}
+					try {
+						role.save();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					Toast.makeText(getActivity(), role.getString("name"),Toast.LENGTH_SHORT).show();
+
+				}
+			}
+		});
+	}
+
+	public void roles() {
+		ParseQuery<ParseRole> query = ParseQuery.getQuery(ParseRole.class);
+
+		query.findInBackground(new FindCallback<ParseRole>() {
+			public void done(List<ParseRole> rowsList, ParseException e) {
+				if (rowsList != null) {
+					for (ParseObject row : rowsList) {
+						//Toast.makeText(getActivity(), row.getString("name"),
+						//		Toast.LENGTH_SHORT).show();
+
+					}
+
+					users(rowsList);
+				}
+			}
+		});
 	}
 
 	private void createAccount() {
@@ -196,7 +255,6 @@ public class Fragment_SignUp_Single extends Fragment {
 
 	private void signUp(String firstName, String lastName, String mUsername,
 			String mEmail, String mPassword, String city, boolean anon) {
-		// TODO Auto-generated method stub
 
 		Toast.makeText(getActivity(), mUsername + " - " + mEmail,
 				Toast.LENGTH_SHORT).show();
@@ -279,7 +337,8 @@ public class Fragment_SignUp_Single extends Fragment {
 	public void onCreateParse() {
 
 		try {
-			Parse.initialize(getActivity(), "wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
+			Parse.initialize(getActivity(),
+					"wecAmPMM0H03a3HPTcpoY7AW2nKfFGtxgCOidzUo",
 					"iquq2rrkjV0XxfZbyyVXVahaQfeR0RzSRTRpkTWz");
 		} catch (NetworkOnMainThreadException e) {
 			// upon resume or recent Parse.initialize exceptions this

@@ -47,7 +47,7 @@
     <string name="institutionRegister">Quer fazer parte do Quero Doar?</string>
     <string name="institutionRegisterWebsite">Visite o nosso site em</string>
     <string name="institutionRegisterWebsiteLink"><a href="http://querodoar.parseapp.com/">http://querodoar.parseapp.com/</a></string>
-    
+
     <!-- Strings related to login -->
     <!-- TODO -->
     <string name="prompt_email">Email</string>
@@ -73,16 +73,14 @@
     <string name="btn_donate">QUERO DOAR!</string>
     <string name="btn_requests">VER PEDIDOS</string>
     <string name="donate">DOAR</string>
-    
-    
+
     <!-- Action Menu -->
     <string name="action_account">A minha conta</string>
     <string name="action_history">Histórico de doações</string>
     <string name="action_about">Sobre nós</string>
     <string name="action_logout">Logout</string>
     <string name="action_exit">Sair</string>
-    
-    
+
     <!-- Messages -->
     <string name="loading_news">A carregar notícias...</string>
     <string name="loading">A carregar...</string>
@@ -108,9 +106,8 @@
         <item>Santarém</item>
         <item>Setúbal</item>
     </string-array>
-    
-    <string name="thankyou">OBRIGADO PELO SEU DONATIVO!</string>
 
+    <string name="thankyou">OBRIGADO PELO SEU DONATIVO!</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_donation_list">DonationList</string>
     <string name="title_activity_institution">InstitutionActivity</string>
@@ -118,5 +115,6 @@
     <string name="title_activity_request">RequestActivity</string>
     <string name="title_activity_request_progress">RequestProgressActivity</string>
     <string name="title_activity_thanks">ThanksActivity</string>
+    <string name="title_activity_donation_list_by_cities">DonationListByCities</string>
 
 </resources>
