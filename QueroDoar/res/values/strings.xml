@@ -117,5 +117,6 @@
     <string name="title_activity_request_progress">RequestProgressActivity</string>
     <string name="title_activity_thanks">ThanksActivity</string>
     <string name="title_activity_donation_list_by_cities">DonationListByCities</string>
+    <string name="title_activity_request_list">RequestListActivity</string>
 
 </resources>

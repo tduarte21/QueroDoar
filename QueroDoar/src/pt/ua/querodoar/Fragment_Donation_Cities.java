@@ -393,9 +393,24 @@ public class Fragment_Donation_Cities extends Fragment {
 					.findViewById(R.id.viewExpCityInstDescr);
 			ImageView viewExpCityInstImage = (ImageView) convertView
 					.findViewById(R.id.viewExpCityInstImage);
+			//TextView viewExpCityInstYear = (ImageView) convertView.findViewById(R.id.viewExpCityInstDescr)
 
 			viewExpCityInstName.setText(topic.getName());
 			viewExpCityInstDescr.setText(topic.getDescription());
+			//viewExpCityInstYear.setText(" ");
+			
+			try {
+				ParseFile imageFile = (ParseFile) topic.getImage();
+				if (imageFile != null) {
+					byte[] file = imageFile.getData();
+					Bitmap imageFileBitmap = BitmapFactory.decodeByteArray(
+							file, 0, file.length);
+					viewExpCityInstImage.setImageBitmap(imageFileBitmap);
+				}
+			} catch (ParseException e) {
+				showToast("Error loading image.");
+			}
+			
 			// viewExpCityInstImage.setImageResource(topic.getImage());
 
 			// delete.setOnClickListener(new OnClickListener() {

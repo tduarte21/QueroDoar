@@ -1,26 +1,31 @@
 package pt.ua.querodoar;
 
-import java.util.List;
-
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseRole;
-import com.parse.ParseUser;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Debug;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
+
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 public class InstitutionActivity extends ActionBarActivity {
+
+	private String objectID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,36 +36,88 @@ public class InstitutionActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
-		
+
 		Bundle extras = getIntent().getExtras();
-		String objectID = extras.getString("inst");
-		
-		showToast(objectID);
-		
-		
-		ParseQuery<ParseUser> queryUser = ParseQuery.getQuery(ParseUser.class);
+		objectID = extras.getString("inst");
 
-		queryUser.whereContains("objectId", objectID);
+		// showToast(objectID);
 
-		queryUser.findInBackground(new FindCallback<ParseUser>() {
-			public void done(List<ParseUser> userList, ParseException e) {
-				if (userList != null) {
-					
-					for (ParseUser parseUser : userList) {
-						showToast(parseUser.getUsername());
+	}
+
+	public String getObjectID() {
+		return objectID;
+	}
+
+	public class UpdateUI implements Runnable {
+
+		private String objectID;
+		private View view;
+
+		public UpdateUI(String objectID, View view) {
+			this.objectID = objectID;
+			this.view = view;
+		}
+
+		@Override
+		public void run() {
+
+			try {
+
+				ParseQuery<ParseUser> queryUser = ParseQuery
+						.getQuery(ParseUser.class);
+
+				//Debug.waitForDebugger();
+
+				ParseUser user = queryUser.get(objectID);
+				// showToast(user.getUsername());
+
+				// updateList();
+
+				TextView txtInstitutionName = (TextView) view
+						.findViewById(R.id.txtInstitutionName);
+				ImageView imgInstImage = (ImageView) view
+						.findViewById(R.id.imgInstImage);
+				TextView txtInstInfo = (TextView) view
+						.findViewById(R.id.txtInstInfo);
+				
+
+				txtInstitutionName.setText(user.getString("name"));
+				txtInstInfo.setText(user.getString("name"));
+
+				try {
+					ParseFile imageFile = (ParseFile) user
+							.getParseFile("image");
+					if (imageFile != null) {
+						byte[] file = imageFile.getData();
+						Bitmap imageFileBitmap = BitmapFactory.decodeByteArray(
+								file, 0, file.length);
+						imgInstImage.setImageBitmap(imageFileBitmap);
 					}
+				} catch (ParseException e) {
+					showToast("Error loading image.");
 				}
+
+				
+
+			} catch (Exception e) {
+				// showToast("Error: " + e);
+				e.printStackTrace();
 			}
-		});
-		
+
+		}
+
+	}
+
+	private void updateList() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.institution, menu);
+		getMenuInflater().inflate(R.menu.menu, menu);
 		return true;
 	}
 
@@ -89,14 +146,41 @@ public class InstitutionActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_institution,
 					container, false);
+
+			InstitutionActivity instAct = (InstitutionActivity) getActivity();
+
+			String obj = instAct.getObjectID();
+			
+			final String objFinal = obj;
+			
+			Button btnRequests = (Button) rootView.findViewById(R.id.btnRequests);
+			
+			btnRequests.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+
+					Intent intent = new Intent(getActivity(), RequestListActivity.class);
+
+					intent.putExtra("inst", objFinal);
+
+					startActivity(intent);
+
+				}
+			});
+
+			UpdateUI update = instAct.new UpdateUI(obj, rootView);
+			update.run();
+
 			return rootView;
 		}
 	}
-	
+
 	public void showToast(final String toast) {
 		this.runOnUiThread(new Runnable() {
 			public void run() {
-				Toast.makeText(InstitutionActivity.this, toast, Toast.LENGTH_SHORT).show();
+				Toast.makeText(InstitutionActivity.this, toast,
+						Toast.LENGTH_SHORT).show();
 			}
 		});
 	}

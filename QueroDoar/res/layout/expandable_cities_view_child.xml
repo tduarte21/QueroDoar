@@ -39,13 +39,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
-    <TextView
-        android:id="@+id/viewPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/viewExpCityInstName"
-        android:layout_alignParentRight="true"
-        android:text="Ano"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+<!--     <TextView -->
+<!--         android:id="@+id/viewPrice" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignBottom="@+id/viewExpCityInstName" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:text="Ano" -->
+<!--         android:textAppearance="?android:attr/textAppearanceSmall" /> -->
 
 </RelativeLayout>

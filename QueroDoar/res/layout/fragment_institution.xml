@@ -5,13 +5,13 @@
     tools:context="pt.ua.querodoar.InstitutionActivity$PlaceholderFragment" >
 
     <LinearLayout
-        android:id="@+id/llMain_RefBox"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:baselineAligned="false"
         android:orientation="vertical" >
 
         <TextView
+            android:id="@+id/txtInstitutionName"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
@@ -20,25 +20,34 @@
             android:textColor="@color/appthemecolor_color"
             android:textSize="@dimen/titles" />
 
+        <ImageView
+            android:id="@+id/imgInstImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_weight="5"
+            android:maxHeight="@dimen/item_view_icon"
+            android:maxWidth="@dimen/item_view_icon"
+            android:minHeight="@dimen/item_view_icon"
+            android:minWidth="@dimen/item_view_icon"
+            android:src="@drawable/hd" />
+
         <TextView
             android:id="@+id/txtInstInfo"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="20"
-            android:textSize="@dimen/text"
-            android:textColor="@color/apptheme_color"
             android:padding="15dp"
-            android:text="Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... Descrição da instituição.... " />
+            android:text="Descrição..."
+            android:textColor="@color/apptheme_color"
+            android:textSize="@dimen/text" />
 
         <Button
-            android:id="@+id/btnDonate"
+            android:id="@+id/btnRequests"
             style="@style/ButtonAppThemeColor"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/btn_requests"
             android:textColor="@color/white" />
     </LinearLayout>

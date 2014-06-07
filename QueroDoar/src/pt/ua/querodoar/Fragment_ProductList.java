@@ -94,7 +94,7 @@ public class Fragment_ProductList extends Fragment {
 			
 			
 			ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView1);
-			imageView.setImageResource(currentProduct.getImage());
+			//imageView.setImageResource(currentProduct.getImage());
 			
 			
 			TextView txtPrice = (TextView) itemView.findViewById(R.id.viewPrice);
@@ -104,7 +104,7 @@ public class Fragment_ProductList extends Fragment {
 			txtDescription.setText(currentProduct.getDescription());
 			
 			TextView txtInst = (TextView) itemView.findViewById(R.id.viewInstitution);
-			txtInst.setText(Integer.toString(currentProduct.getInstID()));
+			//txtInst.setText(Integer.toString(currentProduct.getInstID()));
 			
 			TextView txtName = (TextView) itemView.findViewById(R.id.viewProduct);
 			txtName.setText(currentProduct.getName());

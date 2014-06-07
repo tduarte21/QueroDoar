@@ -1,15 +1,17 @@
 package pt.ua.querodoar;
 
+import com.parse.ParseFile;
+
 public class ClassProduct {
 
 	private String name;
-	private int image;
-	private int instID;
+	private ParseFile image;
+	private String instID;
 	private float price;
 	private String description;
 	
 	
-	public ClassProduct(String name, int image, int instID, float price,
+	public ClassProduct(String name, ParseFile image, String instID, float price,
 			String description) {
 		this.name = name;
 		this.image = image;
@@ -24,16 +26,16 @@ public class ClassProduct {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getImage() {
+	public ParseFile getImage() {
 		return image;
 	}
-	public void setImage(int image) {
+	public void setImage(ParseFile image) {
 		this.image = image;
 	}
-	public int getInstID() {
+	public String getInstID() {
 		return instID;
 	}
-	public void setInstID(int instID) {
+	public void setInstID(String instID) {
 		this.instID = instID;
 	}
 	public float getPrice() {
