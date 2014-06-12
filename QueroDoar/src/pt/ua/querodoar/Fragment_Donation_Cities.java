@@ -334,7 +334,7 @@ public class Fragment_Donation_Cities extends Fragment {
                 
                 intent.putExtra("inst", institution.getObjectID());
                 
-    			startActivity(intent);
+    			startActivityForResult(intent, 1);
 		    	
 		        return true;
 		    }
@@ -473,8 +473,8 @@ public class Fragment_Donation_Cities extends Fragment {
 
 			TextView viewExpCityName = (TextView) convertView
 					.findViewById(R.id.viewExpCityName);
-			TextView viewExpCityDescr = (TextView) convertView
-					.findViewById(R.id.viewExpCityDescr);
+			//TextView viewExpCityDescr = (TextView) convertView
+			//		.findViewById(R.id.viewExpCityDescr);
 			ImageView viewExpCityImage = (ImageView) convertView
 					.findViewById(R.id.viewExpCityImage);
 

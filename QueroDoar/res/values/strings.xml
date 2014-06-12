@@ -10,6 +10,7 @@
     <string name="title_section6">Desafiar Amigos</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_ex">ExActivity</string>
+    <string name="title_activity_account">A minha conta</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Ex act</string>
@@ -110,13 +111,14 @@
 
     <string name="thankyou">OBRIGADO PELO SEU DONATIVO!</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="title_activity_donation_list">DonationList</string>
-    <string name="title_activity_institution">InstitutionActivity</string>
+    <string name="title_activity_donation_list">Lista</string>
+    <string name="title_activity_institution">Instituição</string>
     <string name="title_activity_institution_requests">InstitutionRequestsActivity</string>
-    <string name="title_activity_request">RequestActivity</string>
+    <string name="title_activity_request">Doação do pedido</string>
     <string name="title_activity_request_progress">RequestProgressActivity</string>
-    <string name="title_activity_thanks">ThanksActivity</string>
-    <string name="title_activity_donation_list_by_cities">DonationListByCities</string>
-    <string name="title_activity_request_list">RequestListActivity</string>
+    <string name="title_activity_thanks">Obrigado!</string>
+    <string name="title_activity_donation_list_by_cities">Instituições por Cidade</string>
+    <string name="title_activity_request_list">Lista de pedidos</string>
+    <string name="title_activity_about">Sobre nós</string>
 
 </resources>

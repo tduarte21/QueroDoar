@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -190,17 +191,17 @@ public class FeedActivity extends ActionBarActivity {
 		String title = (String) item.getTitle();
 
 		if (title.equals(getString(R.string.action_account))) {
-			Intent in = new Intent(FeedActivity.this, DonationList.class);
+			Intent in = new Intent(FeedActivity.this, Account.class);
 			startActivity(in);
 
-		} else if (title.equals(getString(R.string.action_history))) {
-			
-			Intent in = new Intent(FeedActivity.this, DonationList.class);
-			startActivity(in);
+//		} else if (title.equals(getString(R.string.action_history))) {
+//			
+//			Intent in = new Intent(FeedActivity.this, DonationList.class);
+//			startActivity(in);
 
 		} else if (title.equals(getString(R.string.action_about))) {
 			
-			Intent in = new Intent(FeedActivity.this, DonationList.class);
+			Intent in = new Intent(FeedActivity.this, About.class);
 			startActivity(in);
 
 		} else if (title.equals(getString(R.string.action_logout))) {
@@ -247,6 +248,10 @@ public class FeedActivity extends ActionBarActivity {
 			// TextView textView = (TextView)
 			// rootView.findViewById(R.id.section_label);
 			// textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+			
+			ProgressBar progress = (ProgressBar) rootView
+					.findViewById(R.id.progressBarFeed);
+			progress.setVisibility(progress.VISIBLE);
 
 			return rootView;
 
@@ -421,6 +426,9 @@ public class FeedActivity extends ActionBarActivity {
 		public void run() {
 
 			try {
+				
+				ProgressBar progress = (ProgressBar) findViewById(R.id.progressBarFeed);
+				progress.setVisibility(progress.INVISIBLE);
 
 				ArrayAdapter<ClassNews> adapter = new MyListAdapter();
 				ListView listView = (ListView) findViewById(R.id.lstViewNews);

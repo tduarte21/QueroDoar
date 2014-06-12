@@ -12,6 +12,15 @@
         android:id="@+id/container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
+        
+        <ProgressBar
+            android:id="@+id/progressBarReqList"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -19,12 +28,12 @@
             android:baselineAligned="false"
             android:orientation="vertical" >
             
-             <!-- <TextView
-                android:id="@+id/txtNewsFeedTitle"
-                android:text="@string/news_feed"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2" /> -->
+<!--              <TextView -->
+<!--                 android:id="@+id/txtNewsFeedTitle" -->
+<!--                 android:text="@string/news_feed" -->
+<!--                 android:layout_width="fill_parent" -->
+<!--                 android:layout_height="0dp" -->
+<!--                 android:layout_weight="2" /> -->
 
             <ListView
                 android:id="@+id/lstViewProduct"
@@ -33,14 +42,14 @@
                 android:layout_weight="20" >
             </ListView>
 
-            <Button
-                android:id="@+id/btnDonate"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:text="@string/btn_donate"
-                android:textColor="@color/white"
-                style="@style/ButtonAppThemeColor" />
+<!--             <Button -->
+<!--                 android:id="@+id/btnDonate" -->
+<!--                 android:layout_width="fill_parent" -->
+<!--                 android:layout_height="0dp" -->
+<!--                 android:layout_weight="4" -->
+<!--                 android:text="@string/btn_donate" -->
+<!--                 android:textColor="@color/white" -->
+<!--                 style="@style/ButtonAppThemeColor" /> -->
 
         </LinearLayout>
     </FrameLayout>

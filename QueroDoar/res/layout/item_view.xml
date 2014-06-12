@@ -15,16 +15,8 @@
         android:maxWidth="@dimen/item_view_icon"
         android:minHeight="@dimen/item_view_icon"
         android:minWidth="@dimen/item_view_icon"
+        android:paddingRight="10dp"
         android:src="@drawable/hd" />
-
-    <TextView
-        android:id="@+id/viewInstitution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/viewProduct"
-        android:layout_below="@+id/viewProduct"
-        android:text="Instituição"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/viewPrice"
@@ -40,8 +32,8 @@
         android:id="@+id/viewProdDescr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/viewInstitution"
-        android:layout_below="@+id/viewInstitution"
+        android:layout_alignLeft="@+id/viewProduct"
+        android:layout_below="@+id/viewProduct"
         android:layout_toLeftOf="@+id/viewPrice"
         android:text="Descrição do produto..."
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -50,9 +42,8 @@
         android:id="@+id/viewProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_alignTop="@+id/imgProduct"
+        android:layout_toRightOf="@+id/imgProduct"
         android:text="Produto"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

@@ -13,13 +13,13 @@
         android:text="Large Text"
         android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/txtCityPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtCityName"
-        android:layout_below="@+id/txtCityName"
-        android:text="Medium Text"
-        android:textSize="20sp" />
+<!--     <TextView -->
+<!--         android:id="@+id/txtCityPoints" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/txtCityName" -->
+<!--         android:layout_below="@+id/txtCityName" -->
+<!--         android:text="Medium Text" -->
+<!--         android:textSize="20sp" /> -->
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package pt.ua.querodoar;
 
+import java.io.IOException;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -82,20 +84,26 @@ public class InstitutionActivity extends ActionBarActivity {
 				
 
 				txtInstitutionName.setText(user.getString("name"));
-				txtInstInfo.setText(user.getString("name"));
-
+				txtInstInfo.setText(user.getString("description"));
+				
+				
 				try {
-					ParseFile imageFile = (ParseFile) user
-							.getParseFile("image");
+
+					ParseFile imageFile = (ParseFile) user.getParseFile("image");
+					
 					if (imageFile != null) {
-						byte[] file = imageFile.getData();
-						Bitmap imageFileBitmap = BitmapFactory.decodeByteArray(
-								file, 0, file.length);
-						imgInstImage.setImageBitmap(imageFileBitmap);
+
+						BitmapScaler scaler = new BitmapScaler(imageFile, 150);
+						imgInstImage.setImageBitmap(scaler.getScaled());
+
 					}
 				} catch (ParseException e) {
 					showToast("Error loading image.");
+				} catch (IOException e) {
+					showToast("Error loading image.");
 				}
+
+				
 
 				
 
@@ -126,10 +134,31 @@ public class InstitutionActivity extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		String title = (String) item.getTitle();
+
+		if (title.equals(getString(R.string.action_account))) {
+			Intent in = new Intent(InstitutionActivity.this, Account.class);
+			startActivity(in);
+
+//		} else if (title.equals(getString(R.string.action_history))) {
+//			
+//			Intent in = new Intent(FeedActivity.this, DonationList.class);
+//			startActivity(in);
+
+		} else if (title.equals(getString(R.string.action_about))) {
+			
+			Intent in = new Intent(InstitutionActivity.this, About.class);
+			startActivity(in);
+
+		} else if (title.equals(getString(R.string.action_logout))) {
+			ParseUser.logOut();
+			System.exit(0);
 		}
+		else if (title.equals(getString(R.string.action_exit))) {
+			
+			System.exit(0);
+		}
+
 		return super.onOptionsItemSelected(item);
 	}
 

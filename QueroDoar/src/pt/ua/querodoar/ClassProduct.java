@@ -4,6 +4,7 @@ import com.parse.ParseFile;
 
 public class ClassProduct {
 
+	private String objectID;
 	private String name;
 	private ParseFile image;
 	private String instID;
@@ -11,8 +12,9 @@ public class ClassProduct {
 	private String description;
 	
 	
-	public ClassProduct(String name, ParseFile image, String instID, float price,
+	public ClassProduct(String objectID,String name, ParseFile image, String instID, float price,
 			String description) {
+		this.objectID = objectID;
 		this.name = name;
 		this.image = image;
 		this.instID = instID;
@@ -20,6 +22,10 @@ public class ClassProduct {
 		this.description = description;
 	}
 	
+	public String getObjectID() {
+		return objectID;
+	}
+
 	public String getName() {
 		return name;
 	}

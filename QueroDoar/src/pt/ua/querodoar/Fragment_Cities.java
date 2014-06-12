@@ -90,8 +90,8 @@ public class Fragment_Cities extends Fragment{
 			//imageView.setImageResource(currentCity.getName()());
 			
 			
-			TextView txtCityPoints = (TextView) itemView.findViewById(R.id.txtCityPoints);
-			txtCityPoints.setText(Integer.toString(currentCity.getPoints()) + " pontos");
+			//TextView txtCityPoints = (TextView) itemView.findViewById(R.id.txtCityPoints);
+			//txtCityPoints.setText(Integer.toString(currentCity.getPoints()) + " pontos");
 			
 			TextView txtCityName = (TextView) itemView.findViewById(R.id.txtCityName);
 			txtCityName.setText(currentCity.getName());
